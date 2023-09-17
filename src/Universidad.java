@@ -6,6 +6,7 @@ public class Universidad {
     private List<Materia> materias = new ArrayList<>();
     private List<Alumno> alumnos = new ArrayList<>();
     private List<CicloLectivo> cicloLectivos = new ArrayList<>();
+    private List<Comision> comisiones = new ArrayList<>();
     
 
     ////////////// F U N C I O N A L I D A D E S //////////////
@@ -60,4 +61,34 @@ public void agregarCicloLectivo(LocalDate fechaInicio, LocalDate fechaFinalizaci
        CicloLectivo nuevoCiclo = new CicloLectivo(fechaInicio,  fechaFinalizacion, fechaInscripcionInicio, fechaInscripcionFinalizacion,id);
         cicloLectivos.add(nuevoCiclo);
     }
+
+
+    //agregarComision
+//No se Pueden generar 2 Comisiones para la misma materia, el mismo cicloLectivo y el mismo turno
+
+public void CrearComision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id) {
+    // Validar que no exista otra Comisión con los mismos parámetros
+    if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
+        System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
+        return;
+    }
+
+    // agregamos la Comision
+    Comision nuevaComision = new Comision(materia, cicloLectivo, turno, id);
+    comisiones.add(nuevaComision);
 }
+
+// validacion
+private boolean existeComisionConParametros(int id, Materia materia, CicloLectivo cicloLectivo, EnumTurno turno) {
+    for (Comision comision : comisiones) {
+        if (comision.getMateria().equals(materia) &&
+                comision.getCicloLectivo().equals(cicloLectivo) &&
+                comision.getTurno().equals(turno)) {
+            return true;
+        }
+    }
+    return false;
+}
+}
+
+

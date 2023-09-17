@@ -1,15 +1,27 @@
 import java.util.List;
 
 public class Comision {
+    private int id;
     private Materia materia;
     private CicloLectivo cicloLectivo;
     private List<Profesor> profesores;
     private List<Alumno> alumnos;
     private List<Examen> registrosExamenes;
+    private EnumTurno turno;
 
-    public Comision(Materia materia, CicloLectivo cicloLectivo) {
+    public Comision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id) {
         this.materia = materia;
         this.cicloLectivo = cicloLectivo;
+        this.turno=turno;
+        this.id=id;
+    } 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Materia getMateria() {
@@ -50,6 +62,14 @@ public class Comision {
 
     public void setRegistrosExamenes(List<Examen> registrosExamenes) {
         this.registrosExamenes = registrosExamenes;
+    }
+
+    public EnumTurno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(EnumTurno turno) {
+        this.turno = turno;
     }
 
     
