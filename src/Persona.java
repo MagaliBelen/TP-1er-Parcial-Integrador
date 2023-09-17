@@ -6,12 +6,14 @@ public class Persona {
     private String apellido;
     private LocalDate fechaNacimiento;
     private LocalDate fechaIngreso;
+    private int dni;
 
-    public Persona(String nombre, String apellido, LocalDate fechaNacimiento, LocalDate fechaIngreso) {
+    public Persona(String nombre, String apellido, LocalDate fechaNacimiento, LocalDate fechaIngreso, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaIngreso = fechaIngreso;
+        this.dni=dni;
     }
 
     public String getNombre() {
@@ -44,6 +46,14 @@ public class Persona {
 
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     
