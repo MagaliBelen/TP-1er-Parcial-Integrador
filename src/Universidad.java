@@ -7,6 +7,7 @@ public class Universidad {
     private List<Alumno> alumnos = new ArrayList<>();
     private List<CicloLectivo> cicloLectivos = new ArrayList<>();
     private List<Comision> comisiones = new ArrayList<>();
+    private List<Profesor> profesores = new ArrayList<>();
     
 
     ////////////// F U N C I O N A L I D A D E S //////////////
@@ -89,6 +90,25 @@ private boolean existeComisionConParametros(int id, Materia materia, CicloLectiv
     }
     return false;
 }
+
+
+//agregarDocentes
+//No se puede agregar 2 docentes con el mismo dni
+
+public void agregarProfesor (String nombre, String apellido, LocalDate fechaNacimiento, LocalDate fechaIngreso, int dni) {
+        // Verificar si ya existe un alumno con el mismo ID
+        for (Profesor profesor : profesores) {
+            if (profesor.getDni() == dni) {
+                System.out.println("No se puede agregar el profesor. Ya existe un profe con el mismo ID.");
+                return;
+            }
+        }
+
+        // Si no se encontró el alumno con el mismo ID, agregar nuevo alumno
+       Profesor nuevoProfe = new Profesor (nombre, apellido, fechaNacimiento, fechaIngreso, dni);
+        profesores.add(nuevoProfe);
+    }
+
 }
 
 
