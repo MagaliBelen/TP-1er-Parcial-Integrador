@@ -1,0 +1,4 @@
+
+public enum EnumTipo {
+PRIMER_PARCIAL,SEGUNDO_PARCIAL, RECUPERATORIO;
+}
