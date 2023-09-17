@@ -5,6 +5,8 @@ import java.util.List;
 public class Universidad {
     private List<Materia> materias = new ArrayList<>();
     private List<Alumno> alumnos = new ArrayList<>();
+    private List<CicloLectivo> cicloLectivos = new ArrayList<>();
+    
 
     ////////////// F U N C I O N A L I D A D E S //////////////
     
@@ -30,18 +32,32 @@ public class Universidad {
     //No se puede agregar 2 alumnos con mismo Dni
     
       public void agregarAlumno(String nombre, String apellido, LocalDate fechaNacimiento, LocalDate fechaIngreso, int dni) {
-        // Verificar si ya existe una materia con el mismo ID
+        // Verificar si ya existe un alumno con el mismo ID
         for (Alumno alumno : alumnos) {
             if (alumno.getDni() == dni) {
-                System.out.println("No se puede agregar la materia. Ya existe una materia con el mismo ID.");
+                System.out.println("No se puede agregar el alumno. Ya existe un alumno con el mismo ID.");
                 return;
             }
         }
 
-        // Si no se encontró una materia con el mismo ID, agregar la nueva materia
+        // Si no se encontró el alumno con el mismo ID, agregar nuevo alumno
        Alumno nuevoAlumno = new Alumno(nombre, apellido, fechaNacimiento, fechaIngreso, dni);
         alumnos.add(nuevoAlumno);
     }
 
+    //agregarCicloLectivo
+    //No se puede asignar 2 ciclos Lectivo con mismo Id y no se pueden superponer los rangos de fechas entre 2 ciclos distintos
 
+public void agregarCicloLectivo(LocalDate fechaInicio, LocalDate fechaFinalizacion, LocalDate fechaInscripcionInicio, LocalDate fechaInscripcionFinalizacion, int id) {
+        // Verificar si ya existe el ciclo con el mismo ID
+        for (CicloLectivo cicloLectivo : cicloLectivos) {
+            if (cicloLectivo.getId() == id && cicloLectivo.getFechaInicio() != fechaInicio) {
+                return;
+            }
+        }
+
+        // Si no se encontró un ciclo con mismo id, se agrega
+       CicloLectivo nuevoCiclo = new CicloLectivo(fechaInicio,  fechaFinalizacion, fechaInscripcionInicio, fechaInscripcionFinalizacion,id);
+        cicloLectivos.add(nuevoCiclo);
+    }
 }

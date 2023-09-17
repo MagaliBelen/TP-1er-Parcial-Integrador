@@ -1,16 +1,18 @@
 import java.time.LocalDate;
 
 public class CicloLectivo {
+    private int id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinalizacion;
     private LocalDate fechaInscripcionInicio;
     private LocalDate fechaInscripcionFinalizacion;
 
-    public CicloLectivo(LocalDate fechaInicio, LocalDate fechaFinalizacion, LocalDate fechaInscripcionInicio, LocalDate fechaInscripcionFinalizacion) {
+    public CicloLectivo(LocalDate fechaInicio, LocalDate fechaFinalizacion, LocalDate fechaInscripcionInicio, LocalDate fechaInscripcionFinalizacion, int id) {
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
         this.fechaInscripcionInicio = fechaInscripcionInicio;
         this.fechaInscripcionFinalizacion = fechaInscripcionFinalizacion;
+        this.id=id;
     }
 
     public LocalDate getFechaInicio() {
@@ -43,6 +45,14 @@ public class CicloLectivo {
 
     public void setFechaInscripcionFinalizacion(LocalDate fechaInscripcionFinalizacion) {
         this.fechaInscripcionFinalizacion = fechaInscripcionFinalizacion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
