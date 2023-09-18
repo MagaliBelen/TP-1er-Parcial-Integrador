@@ -131,6 +131,34 @@ public class Universidad {
 //agregarCorrelatividad(idMateria,  idCorrelativa)
 //Se debe validar que ambos códigos existan en una materia
 
+public void agregarCorrelatividad(int idMateria, int idCorrelativa) {
+    if (!existeMateria(idMateria) || !existeMateria(idCorrelativa)) {
+        throw new IllegalArgumentException("Ambos códigos deben existir en una materia.");
+    }
+
+    Materia materia = obtenerMateriaPorId(idMateria);
+    materia.agregarCorrelativa(idCorrelativa);
+}
+
+public boolean existeMateria(int id) {
+    for (Materia materia : materias) {
+        if (materia.getId() == id) {
+            return true; //existe materia
+        }
+    }
+    return false; //no existe materia
+}
+
+public Materia obtenerMateriaPorId(int id) {
+    for (Materia materia : materias) {
+        if (materia.getId() == id) {
+            return materia;
+        }
+    }
+    return null; // Materia no encontrada
+}
+
+
 
 
 }
