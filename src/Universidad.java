@@ -109,6 +109,27 @@ public void agregarProfesor (String nombre, String apellido, LocalDate fechaNaci
         profesores.add(nuevoProfe);
     }
 
+//asignarDocentesAComision
+//El mismo docente no puede ser profesor de la misma comisión 2 veces.
+public void asignarDocentesAComision(Profesor profesor) {
+    // Verificar si el docente ya está asignado a la comisión
+    if (existeProfesorEnComision(profesor)) {
+        System.out.println("El mismo docente no puede ser profesor de la misma comisión 2 veces.");
+        return;
+    }
+    
+    // Agregar el profesor a la comisión
+    profesores.add(profesor);
+}
+
+private boolean existeProfesorEnComision(Profesor profesor) {
+    return profesores.contains(profesor);
+}
+
+
+
+
+
 }
 
 
