@@ -21,6 +21,10 @@ public class Materia {
         return materiasCorrelativas.contains(idCorrelativa);
     }
 
+    //Eliminar correlativas
+    public void eliminarCorrelativa(int idCorrelativa) {
+        materiasCorrelativas.remove(idCorrelativa);
+    }
 
     public int getId() {
         return id;

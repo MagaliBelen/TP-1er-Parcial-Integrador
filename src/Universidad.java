@@ -158,6 +158,8 @@ public Materia obtenerMateriaPorId(int id) {
     return null; // Materia no encontrada
 }
 
+//eliminarCorrelatividad(idMateria, idCorrelativaAELiminar)
+//Se debe validar que esa correlatividad exista
 
 
 
