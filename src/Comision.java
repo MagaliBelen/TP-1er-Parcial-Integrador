@@ -8,13 +8,18 @@ public class Comision {
     private List<Alumno> alumnos;
     private List<Examen> registrosExamenes;
     private EnumTurno turno;
+    private Aula aula;
+    private EnumDia dia;
 
-    public Comision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id) {
+    public Comision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id, Aula aula, EnumDia dia) {
         this.materia = materia;
         this.cicloLectivo = cicloLectivo;
         this.turno=turno;
         this.id=id;
+        this.aula=aula;
+        this.dia=dia;
     } 
+
 
     public int getId() {
         return id;
@@ -70,6 +75,34 @@ public class Comision {
 
     public void setTurno(EnumTurno turno) {
         this.turno = turno;
+    }
+
+
+
+
+    public Aula getAula() {
+        return aula;
+    }
+
+
+
+
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+
+
+
+
+    public EnumDia getDia() {
+        return dia;
+    }
+
+
+
+
+    public void setDia(EnumDia dia) {
+        this.dia = dia;
     }
 
     

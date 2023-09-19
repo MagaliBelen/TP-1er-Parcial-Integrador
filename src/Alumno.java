@@ -5,5 +5,13 @@ public class Alumno extends Persona {
         super(nombre, apellido, fechaNacimiento, fechaIngreso,dni);
     }
 
+    public boolean tieneCorrelativasAprobadas() {
+        return false;
+    }
+
+    public boolean haAprobadoMateria() {
+        return false;
+    }
+
     
 }
