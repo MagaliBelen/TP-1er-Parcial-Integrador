@@ -5,7 +5,7 @@ public class Comision {
     private Materia materia;
     private CicloLectivo cicloLectivo;
     private List<Profesor> profesores;
-    private List<Alumno> alumnos;
+    private List<Alumno> alumnosregistrados;
     private List<Examen> registrosExamenes;
     private EnumTurno turno;
     private Aula aula;
@@ -53,13 +53,7 @@ public class Comision {
         this.profesores = profesores;
     }
 
-    public List<Alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    public void setAlumnos(List<Alumno> alumnos) {
-        this.alumnos = alumnos;
-    }
+  
 
     public List<Examen> getRegistrosExamenes() {
         return registrosExamenes;
@@ -103,6 +97,16 @@ public class Comision {
 
     public void setDia(EnumDia dia) {
         this.dia = dia;
+    }
+
+
+    public List<Alumno> getAlumnosregistrados() {
+        return alumnosregistrados;
+    }
+
+
+    public void setAlumnosregistrados(List<Alumno> alumnosregistrados) {
+        this.alumnosregistrados = alumnosregistrados;
     }
 
     

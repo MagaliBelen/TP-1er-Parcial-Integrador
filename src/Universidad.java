@@ -70,7 +70,7 @@ public class Universidad {
     // No se Pueden generar 2 Comisiones para la misma materia, el mismo
     // cicloLectivo y el mismo turno
 
-    public void CrearComision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id, Aula aula) {
+    public void CrearComision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id, Aula aula,EnumDia dia) {
         // Validar que no exista otra Comisión con los mismos parámetros
         if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
             System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
@@ -78,7 +78,7 @@ public class Universidad {
         }
 
         // agregamos la Comision
-        Comision nuevaComision = new Comision(materia, cicloLectivo, turno, id, aula);
+        Comision nuevaComision = new Comision(materia, cicloLectivo, turno, id, aula, dia);
         comisiones.add(nuevaComision);
     }
 
@@ -201,7 +201,7 @@ public void inscribirAlumnoAComision(Alumno alumno, Comision comision) {
     }
 
     // Verificar que no se exceda la cantidad de alumnos permitidos en el aula
-    if (aula != null && alumnos.size() >= aula.getCapacidadMaxima()) {
+    if (aula != null &&  Comision.getAlumnosregistrados.size() >= aula.getCapacidadMaxima()) {
         throw new IllegalArgumentException("La comisión ya ha alcanzado su capacidad máxima de alumnos.");
     }
 
