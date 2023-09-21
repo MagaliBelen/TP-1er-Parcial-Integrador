@@ -70,7 +70,8 @@ public class Universidad {
     // No se Pueden generar 2 Comisiones para la misma materia, el mismo
     // cicloLectivo y el mismo turno
 
-    public void CrearComision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id, Aula aula,EnumDia dia) {
+    public void CrearComision(Materia materia, CicloLectivo cicloLectivo, EnumTurno turno, int id, Aula aula,
+            EnumDia dia) {
         // Validar que no exista otra Comisión con los mismos parámetros
         if (existeComisionConParametros(id, materia, cicloLectivo, turno)) {
             System.out.println("Ya existe una comisión con la misma materia, ciclo lectivo y turno");
@@ -169,81 +170,80 @@ public class Universidad {
         }
     }
 
-
-//inscribirAlumnoAComision (dni, idComision)
-// Verificar que el alumno y la comisión estén dados de alta
-//No se puede inscribir Alumnos si este no tiene aprobadas todas las correlativas. Se aprueba con 4 o más.
-//La inscripción no se puede realizar si esta fuera de fecha Inscripción
-//No se puede inscribir el alumno si excede la cantidad de alumnos permitidos en el aula
-//No se puede inscribir el Alumno si ya está inscripto a otra comisión el mismo día y Turno
-//No se puede inscribir a una materia que haya aprobado previamente
-
-
-public void inscribirAlumnoAComision(Alumno alumno, Comision comision) {
+    // inscribirAlumnoAComision (dni, idComision)
     // Verificar que el alumno y la comisión estén dados de alta
-    if (!existeAlumno(alumno) && !existeComision(comision)) {
-        throw new IllegalArgumentException("El alumno o la comisión no están dados de alta o la inscripción está fuera de fecha.");
-    }
+    // No se puede inscribir Alumnos si este no tiene aprobadas todas las
+    // correlativas. Se aprueba con 4 o más.
+    // La inscripción no se puede realizar si esta fuera de fecha Inscripción
+    // No se puede inscribir el alumno si excede la cantidad de alumnos permitidos
+    // en el aula
+    // No se puede inscribir el Alumno si ya está inscripto a otra comisión el mismo
+    // día y Turno
+    // No se puede inscribir a una materia que haya aprobado previamente
 
-    // Verificar que el alumno tenga aprobadas todas las correlativas
-    if (!alumno.tieneCorrelativasAprobadas()) {
-        throw new IllegalArgumentException("El alumno no tiene aprobadas todas las correlativas necesarias.");
-    }
-
-    // Verificar que el alumno no esté inscrito en otra comisión el mismo día y turno
-    if (alumnoEstaInscritoEnOtraComision(alumno, comision)) {
-        throw new IllegalArgumentException("El alumno ya está inscrito en otra comisión el mismo día y turno.");
-    }
-
-    // Verificar que el alumno no haya aprobado previamente la materia
-    if (alumno.haAprobadoMateria()) {
-        throw new IllegalArgumentException("El alumno ya ha aprobado previamente esta materia.");
-    }
-
-    // Verificar que no se exceda la cantidad de alumnos permitidos en el aula
-    if (aula != null &&  Comision.getAlumnosregistrados.size() >= aula.getCapacidadMaxima()) {
-        throw new IllegalArgumentException("La comisión ya ha alcanzado su capacidad máxima de alumnos.");
-    }
-
-    // Inscribir al alumno a la comisión
-    alumnos.add(alumno);
-}
-
-//para saber si existe  alumno
-private boolean existeAlumno(Alumno alumno) {
-    for (Alumno a : alumnos) {
-        if (a.equals(alumno)) {
-            return true;
+    public void inscribirAlumnoAComision(Alumno alumno, Comision comision) {
+        // Verificar que el alumno y la comisión estén dados de alta
+        if (!existeAlumno(alumno) && !existeComision(comision)) {
+            throw new IllegalArgumentException(
+                    "El alumno o la comisión no están dados de alta o la inscripción está fuera de fecha.");
         }
-    }
-    return false;
-}
 
-//para saber si existe comision
-private boolean existeComision(Comision comision) {
-    for (Comision c : comisiones) {
-        if (c.equals(comision)) {
-            return true;
+        // Verificar que el alumno tenga aprobadas todas las correlativas
+        if (!alumno.tieneCorrelativasAprobadas(materias)) {
+            throw new IllegalArgumentException("El alumno no tiene aprobadas todas las correlativas necesarias.");
         }
-    }
-    return false;
-}
 
-
-// Verificar si el alumno está inscrito en otra comisión el mismo día y turno
-
-private boolean alumnoEstaInscritoEnOtraComision(Alumno alumno, Comision comision) {
-    for (Inscripcion inscripcion : listaInscripciones) {
-        if (inscripcion.getAlumno().equals(alumno) &&
-            inscripcion.getComision().getFecha().equals(comision.getFecha()) &&
-            inscripcion.getComision().getTurno().equals(comision.getTurno())) {
-            return true;
+        // Verificar que el alumno no esté inscrito en otra comisión el mismo día y
+        // turno
+        if (alumnoEstaInscritoEnOtraComision(alumno, comision)) {
+            throw new IllegalArgumentException("El alumno ya está inscrito en otra comisión el mismo día y turno.");
         }
+
+        // Verificar que el alumno no haya aprobado previamente la materia
+        if (alumno.haAprobadoMateria(Materia)) {
+            throw new IllegalArgumentException("El alumno ya ha aprobado previamente esta materia.");
+        }
+
+        // Verificar que no se exceda la cantidad de alumnos permitidos en el aula
+        if (aula != null && Comision.getAlumnosregistrados.size() >= aula.getCapacidadMaxima()) {
+            throw new IllegalArgumentException("La comisión ya ha alcanzado su capacidad máxima de alumnos.");
+        }
+
+        // Inscribir al alumno a la comisión
+        alumnos.add(alumno);
     }
-    return false;
+
+    // para saber si existe alumno
+    private boolean existeAlumno(Alumno alumno) {
+        for (Alumno a : alumnos) {
+            if (a.equals(alumno)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // para saber si existe comision
+    private boolean existeComision(Comision comision) {
+        for (Comision c : comisiones) {
+            if (c.equals(comision)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Verificar si el alumno está inscrito en otra comisión el mismo día y turno
+    private boolean alumnoEstaInscritoEnOtraComision(Alumno alumno, Comision comision) {
+        for (Alumno alumnoRegistrado : alumnosregistrados) {
+            for (Comision otraComision : alumnoRegistrado.getComision()) {
+                if (otraComision.getDia().equals(comision.getDia()) &&
+                        otraComision.getTurno().equals(comision.getTurno())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
-
-
-    }
-
-
